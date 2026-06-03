@@ -1,0 +1,15 @@
+@use "../../../styles/abstracts/variables" as *;
+
+.card {
+  display: grid;
+}
+
+.state {
+  color: $color-muted;
+}
+
+.error {
+  color: $color-danger;
+  font-weight: 700;
+}
+

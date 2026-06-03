@@ -1,0 +1,32 @@
+@use "../../../styles/abstracts/variables" as *;
+
+.badge {
+  display: inline-flex;
+  min-height: 1.625rem;
+  align-items: center;
+  padding: 0 $space-3;
+  border-radius: 999px;
+  font-size: $font-size-xs;
+  font-weight: 800;
+}
+
+.neutral {
+  background: rgb(23 32 27 / 0.08);
+  color: $color-muted;
+}
+
+.success {
+  background: $color-primary-soft;
+  color: $color-primary-strong;
+}
+
+.warning {
+  background: $color-accent-soft;
+  color: #8b541b;
+}
+
+.info {
+  background: rgb(40 103 168 / 0.12);
+  color: $color-info;
+}
+

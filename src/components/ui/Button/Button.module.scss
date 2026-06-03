@@ -1,0 +1,76 @@
+@use "../../../styles/abstracts/variables" as *;
+@use "../../../styles/abstracts/mixins" as *;
+
+.button {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  gap: $space-2;
+  padding: 0 $space-4;
+  border: 1px solid transparent;
+  border-radius: $radius-md;
+  font-weight: 700;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-1px);
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  svg {
+    width: 1.05rem;
+    height: 1.05rem;
+    flex: 0 0 auto;
+  }
+}
+
+.primary {
+  background: $color-primary;
+  color: #ffffff;
+
+  &:hover:not(:disabled) {
+    background: $color-primary-strong;
+  }
+}
+
+.secondary {
+  background: $color-primary-soft;
+  color: $color-primary-strong;
+
+  &:hover:not(:disabled) {
+    border-color: rgb(18 106 79 / 0.22);
+  }
+}
+
+.ghost {
+  background: transparent;
+  color: $color-muted;
+
+  &:hover:not(:disabled) {
+    background: rgb(23 32 27 / 0.06);
+    color: $color-ink;
+  }
+}
+
+.danger {
+  background: rgb(179 58 58 / 0.1);
+  color: $color-danger;
+
+  &:hover:not(:disabled) {
+    border-color: rgb(179 58 58 / 0.22);
+  }
+}
+

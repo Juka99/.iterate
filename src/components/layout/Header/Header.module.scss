@@ -1,0 +1,35 @@
+@use "../../../styles/abstracts/variables" as *;
+@use "../../../styles/abstracts/breakpoints" as *;
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: $z-header;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-4;
+  min-height: 4.75rem;
+  padding: $space-4;
+  background: rgb(255 253 248 / 0.92);
+  border-bottom: 1px solid $color-border;
+  backdrop-filter: blur(14px);
+
+  h1 {
+    font-size: $font-size-lg;
+  }
+}
+
+.kicker {
+  color: $color-muted;
+  font-size: $font-size-xs;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.menuButton {
+  @include media(lg) {
+    display: none;
+  }
+}
+

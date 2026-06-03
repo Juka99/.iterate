@@ -1,0 +1,12 @@
+@use "../../../styles/abstracts/variables" as *;
+
+.card {
+  min-height: 12rem;
+}
+
+.xp {
+  margin-bottom: $space-5;
+  color: $color-muted;
+  font-weight: 700;
+}
+

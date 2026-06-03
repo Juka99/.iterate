@@ -1,0 +1,57 @@
+@use "../../styles/abstracts/variables" as *;
+@use "../../styles/abstracts/breakpoints" as *;
+
+.page {
+  display: grid;
+  gap: $space-5;
+}
+
+.hero {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  min-height: 9rem;
+  padding: $space-6;
+  background:
+    linear-gradient(135deg, rgb(18 106 79 / 0.92), rgb(194 122 40 / 0.82)),
+    $color-primary;
+  border-radius: $radius-lg;
+  color: #ffffff;
+
+  p {
+    margin-bottom: $space-2;
+    font-size: $font-size-sm;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    max-width: 48rem;
+    font-size: $font-size-2xl;
+  }
+}
+
+.grid,
+.columns {
+  display: grid;
+  gap: $space-4;
+}
+
+.grid {
+  @include media(md) {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+.columns {
+  @include media(lg) {
+    grid-template-columns: minmax(0, 1.45fr) minmax(18rem, 0.55fr);
+    align-items: start;
+  }
+}
+
+.error {
+  color: $color-danger;
+  font-weight: 700;
+}
+

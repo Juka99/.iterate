@@ -1,0 +1,32 @@
+@use "../../styles/abstracts/variables" as *;
+
+.page {
+  display: grid;
+  gap: $space-5;
+}
+
+.heading {
+  display: grid;
+  gap: $space-1;
+
+  p {
+    color: $color-primary;
+    font-size: $font-size-sm;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    font-size: $font-size-2xl;
+  }
+}
+
+.state {
+  color: $color-muted;
+}
+
+.error {
+  color: $color-danger;
+  font-weight: 700;
+}
+

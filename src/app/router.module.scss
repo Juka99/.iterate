@@ -1,0 +1,11 @@
+@use "../styles/abstracts/mixins" as *;
+@use "../styles/abstracts/variables" as *;
+
+.centered {
+  @include flex-center;
+  min-height: 100vh;
+  padding: $space-4;
+  color: $color-muted;
+  font-weight: 800;
+}
+

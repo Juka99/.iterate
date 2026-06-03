@@ -1,0 +1,22 @@
+@use "../../../styles/abstracts/variables" as *;
+@use "../../../styles/abstracts/mixins" as *;
+@use "../../../styles/abstracts/breakpoints" as *;
+
+.shell {
+  min-height: 100vh;
+
+  @include media(lg) {
+    display: grid;
+    grid-template-columns: 17.5rem minmax(0, 1fr);
+  }
+}
+
+.content {
+  min-width: 0;
+}
+
+.main {
+  @include page-container;
+  @include section-spacing;
+}
+

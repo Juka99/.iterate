@@ -1,0 +1,30 @@
+@use "../../../styles/abstracts/variables" as *;
+@use "../../../styles/abstracts/mixins" as *;
+
+.backdrop {
+  @include flex-center;
+  position: fixed;
+  inset: 0;
+  z-index: $z-modal;
+  padding: $space-4;
+  background: rgb(23 32 27 / 0.44);
+}
+
+.modal {
+  @include card-style;
+  width: min(100%, 34rem);
+  padding: $space-5;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-4;
+  margin-bottom: $space-4;
+
+  h2 {
+    font-size: $font-size-xl;
+  }
+}
+

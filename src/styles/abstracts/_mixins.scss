@@ -1,0 +1,38 @@
+@use "./variables" as *;
+@use "./breakpoints" as *;
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin page-container {
+  width: min(100% - #{$space-4}, 72rem);
+  margin-inline: auto;
+
+  @include media(md) {
+    width: min(100% - #{$space-8}, 72rem);
+  }
+}
+
+@mixin card-style {
+  background: $color-panel;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-sm;
+}
+
+@mixin section-spacing {
+  padding-block: $space-6;
+
+  @include media(md) {
+    padding-block: $space-8;
+  }
+}
+
+@mixin focus-ring {
+  outline: 3px solid rgb(18 106 79 / 0.25);
+  outline-offset: 2px;
+}
+

@@ -1,0 +1,31 @@
+@use "../../../styles/abstracts/variables" as *;
+
+.wrapper {
+  display: grid;
+  gap: $space-2;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  gap: $space-3;
+  color: $color-muted;
+  font-size: $font-size-sm;
+  font-weight: 700;
+}
+
+.track {
+  height: 0.75rem;
+  overflow: hidden;
+  background: rgb(23 32 27 / 0.08);
+  border-radius: 999px;
+}
+
+.fill {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, $color-primary, $color-accent);
+  border-radius: inherit;
+  transition: width 220ms ease;
+}
+

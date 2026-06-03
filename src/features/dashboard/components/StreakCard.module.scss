@@ -1,0 +1,29 @@
+@use "../../../styles/abstracts/variables" as *;
+
+.card {
+  min-height: 12rem;
+}
+
+.value {
+  display: flex;
+  align-items: baseline;
+  gap: $space-2;
+  color: $color-accent;
+
+  svg {
+    width: 1.4rem;
+    height: 1.4rem;
+    align-self: center;
+  }
+
+  strong {
+    font-size: 3rem;
+    line-height: 1;
+  }
+
+  span {
+    color: $color-muted;
+    font-weight: 800;
+  }
+}
+

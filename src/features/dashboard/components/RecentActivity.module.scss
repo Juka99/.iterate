@@ -1,0 +1,42 @@
+@use "../../../styles/abstracts/variables" as *;
+
+.state {
+  color: $color-muted;
+}
+
+.error {
+  color: $color-danger;
+  font-weight: 700;
+}
+
+.list {
+  display: grid;
+  gap: $space-3;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-4;
+    padding-bottom: $space-3;
+    border-bottom: 1px solid $color-border;
+
+    &:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+  }
+
+  span {
+    color: $color-muted;
+  }
+
+  strong {
+    color: $color-primary;
+    white-space: nowrap;
+  }
+}
+

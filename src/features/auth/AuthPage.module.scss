@@ -1,0 +1,78 @@
+@use "../../styles/abstracts/variables" as *;
+@use "../../styles/abstracts/mixins" as *;
+@use "../../styles/abstracts/breakpoints" as *;
+
+.page {
+  @include flex-center;
+  min-height: 100vh;
+  padding: $space-4;
+}
+
+.panel {
+  @include card-style;
+  width: min(100%, 28rem);
+  padding: $space-6;
+
+  @include media(md) {
+    padding: $space-8;
+  }
+
+  h1 {
+    margin-bottom: $space-6;
+    font-size: $font-size-2xl;
+  }
+}
+
+.kicker {
+  margin-bottom: $space-2;
+  color: $color-primary;
+  font-weight: 900;
+}
+
+.form {
+  display: grid;
+  gap: $space-4;
+
+  label {
+    display: grid;
+    gap: $space-2;
+    color: $color-muted;
+    font-size: $font-size-sm;
+    font-weight: 800;
+  }
+
+  input {
+    min-height: 2.75rem;
+    padding: 0 $space-3;
+    background: $color-surface;
+    border: 1px solid $color-border;
+    border-radius: $radius-md;
+    color: $color-ink;
+
+    &:focus {
+      @include focus-ring;
+      border-color: $color-primary;
+    }
+  }
+}
+
+.error {
+  padding: $space-3;
+  background: rgb(179 58 58 / 0.1);
+  border-radius: $radius-md;
+  color: $color-danger;
+  font-size: $font-size-sm;
+  font-weight: 700;
+}
+
+.switch {
+  margin-top: $space-5;
+  color: $color-muted;
+  font-size: $font-size-sm;
+
+  a {
+    color: $color-primary;
+    font-weight: 800;
+  }
+}
+
