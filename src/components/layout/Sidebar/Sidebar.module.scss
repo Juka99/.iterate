@@ -1,6 +1,6 @@
-@use "../../../styles/abstracts/variables" as *;
-@use "../../../styles/abstracts/mixins" as *;
-@use "../../../styles/abstracts/breakpoints" as *;
+@use '../../../styles/abstracts/variables' as *;
+@use '../../../styles/abstracts/mixins' as *;
+@use '../../../styles/abstracts/breakpoints' as *;
 
 .sidebar {
   position: fixed;
@@ -9,10 +9,12 @@
   display: flex;
   width: min(18rem, 82vw);
   flex-direction: column;
-  gap: $space-6;
-  padding: $space-5;
-  background: $color-panel;
-  border-right: 1px solid $color-border;
+  gap: $space-5;
+  padding: $space-5 $space-4;
+  background:
+    linear-gradient(180deg, rgb(139 92 246 / 0.14), transparent 16rem),
+    linear-gradient(90deg, rgb(255 255 255 / 0.035), transparent), #050814;
+  border-right: 1px solid rgb(139 92 246 / 0.18);
   box-shadow: $shadow-md;
   transform: translateX(-100%);
   transition: transform 180ms ease;
@@ -35,36 +37,22 @@
 .brand {
   display: flex;
   align-items: center;
-  gap: $space-3;
-
-  strong,
-  small {
-    display: block;
-  }
-
-  small {
-    color: $color-muted;
-    font-size: $font-size-sm;
-  }
+  min-height: 2rem;
 }
 
-.mark {
-  @include flex-center;
-  width: 2.75rem;
-  height: 2.75rem;
-  background: $color-primary;
-  border-radius: $radius-md;
-  color: #ffffff;
-
-  svg {
-    width: 1.3rem;
-    height: 1.3rem;
-  }
+.brandLogo {
+  display: block;
+  width: min(7rem, 100%);
+  height: auto;
+  object-fit: contain;
+  object-position: left center;
+  filter: drop-shadow(0 0 10px rgb(255 255 255 / 0.12))
+    drop-shadow(0 0 18px rgb(139 92 246 / 0.14));
 }
 
 .nav {
   display: grid;
-  gap: $space-2;
+  gap: $space-1;
 }
 
 .link {
@@ -73,19 +61,56 @@
   gap: $space-3;
   min-height: 2.75rem;
   padding: 0 $space-3;
+  border: 1px solid transparent;
   border-radius: $radius-md;
   color: $color-muted;
   font-weight: 800;
 
   &:hover,
   &.active {
-    background: $color-primary-soft;
+    background:
+      linear-gradient(90deg, rgb(139 92 246 / 0.42), rgb(139 92 246 / 0.08)),
+      rgb(255 255 255 / 0.04);
+    border-color: rgb(139 92 246 / 0.36);
     color: $color-primary-strong;
+    box-shadow: inset 0 0 18px rgb(139 92 246 / 0.18);
   }
 
   svg {
     width: 1.1rem;
     height: 1.1rem;
+  }
+
+  small {
+    margin-left: auto;
+    padding: 0.1rem $space-2;
+    background: rgb(139 92 246 / 0.2);
+    border-radius: $radius-sm;
+    color: $color-primary-strong;
+    font-size: 0.65rem;
+  }
+}
+
+.navDot {
+  width: 0.55rem;
+  height: 0.55rem;
+  margin-left: auto;
+  background: $color-crimson;
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 3px rgb(255 73 106 / 0.16),
+    0 0 16px rgb(255 73 106 / 0.58);
+}
+
+.disabled {
+  cursor: default;
+  opacity: 0.78;
+
+  &:hover {
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+    color: $color-muted;
   }
 }
 
@@ -95,9 +120,16 @@
   gap: $space-3;
   margin-top: auto;
   padding: $space-4;
-  background: $color-accent-soft;
+  background:
+    repeating-linear-gradient(
+      135deg,
+      rgb(255 255 255 / 0.045) 0 1px,
+      transparent 1px 9px
+    ),
+    $color-accent-soft;
+  border: 1px solid rgb(251 191 36 / 0.24);
   border-radius: $radius-md;
-  color: #7c4b17;
+  color: $color-accent;
   font-size: $font-size-sm;
   font-weight: 700;
 
@@ -108,16 +140,689 @@
   }
 }
 
+.playerCard {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: $space-3;
+  padding: $space-3;
+  background:
+    linear-gradient(135deg, rgb(139 92 246 / 0.22), rgb(34 211 238 / 0.08)),
+    rgb(15 23 42 / 0.78);
+  border: 1px solid rgb(139 92 246 / 0.3);
+  border-radius: $radius-lg;
+  box-shadow: $shadow-sm;
+  isolation: isolate;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(
+        circle at 14% 18%,
+        rgb(255 255 255 / 0.08),
+        transparent 18%
+      ),
+      linear-gradient(
+        120deg,
+        transparent 0 38%,
+        rgb(255 255 255 / 0.06) 48%,
+        transparent 58%
+      ),
+      repeating-linear-gradient(
+        90deg,
+        rgb(255 255 255 / 0.025) 0 1px,
+        transparent 1px 13px
+      );
+    opacity: 0.6;
+    pointer-events: none;
+  }
+}
+
+.playerCardAtBottom {
+  margin-top: auto;
+}
+
+.paragonIdentityCard {
+  border-color: rgb(244 114 182 / 0.34);
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 0.04),
+    inset 0 0 32px rgb(216 180 254 / 0.1),
+    0 0 28px rgb(244 114 182 / 0.18),
+    0 0 56px rgb(168 85 247 / 0.18),
+    $shadow-sm;
+  animation: paragonCardGlow 2s ease-in-out infinite;
+
+  &::before {
+    opacity: 0.78;
+    background:
+      radial-gradient(
+        circle at 14% 18%,
+        rgb(255 255 255 / 0.1),
+        transparent 18%
+      ),
+      radial-gradient(
+        circle at 84% 26%,
+        rgb(244 114 182 / 0.12),
+        transparent 20%
+      ),
+      linear-gradient(
+        120deg,
+        transparent 0 38%,
+        rgb(255 255 255 / 0.08) 48%,
+        transparent 58%
+      ),
+      repeating-linear-gradient(
+        90deg,
+        rgb(255 255 255 / 0.025) 0 1px,
+        transparent 1px 13px
+      );
+  }
+}
+
+.livingIdentityCard {
+  border-color: rgb(103 232 249 / 0.56);
+  background:
+    radial-gradient(
+      circle at 16% 20%,
+      rgb(255 255 255 / 0.12),
+      transparent 22%
+    ),
+    radial-gradient(circle at 86% 18%, rgb(250 204 21 / 0.16), transparent 24%),
+    linear-gradient(
+      135deg,
+      rgb(34 211 238 / 0.2),
+      rgb(168 85 247 / 0.2) 48%,
+      rgb(244 114 182 / 0.18)
+    ),
+    rgb(10 15 32 / 0.92);
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 0.08),
+    inset 0 0 40px rgb(34 211 238 / 0.12),
+    0 0 34px rgb(34 211 238 / 0.24),
+    0 0 68px rgb(244 114 182 / 0.22),
+    0 0 90px rgb(250 204 21 / 0.12),
+    $shadow-sm;
+  animation: livingCardGlow 3.8s ease-in-out infinite;
+
+  &::before {
+    opacity: 0.92;
+    background:
+      radial-gradient(
+        circle at 14% 18%,
+        rgb(255 255 255 / 0.16),
+        transparent 18%
+      ),
+      radial-gradient(
+        circle at 82% 28%,
+        rgb(250 204 21 / 0.16),
+        transparent 20%
+      ),
+      linear-gradient(
+        120deg,
+        transparent 0 34%,
+        rgb(255 255 255 / 0.12) 48%,
+        transparent 62%
+      ),
+      repeating-linear-gradient(
+        90deg,
+        rgb(103 232 249 / 0.035) 0 1px,
+        transparent 1px 13px
+      );
+  }
+}
+
+.bannerCard {
+  background:
+    radial-gradient(
+      circle at 84% 18%,
+      rgb(125 211 252 / 0.24),
+      transparent 8rem
+    ),
+    radial-gradient(
+      circle at 18% 88%,
+      rgb(34 211 238 / 0.18),
+      transparent 7rem
+    ),
+    linear-gradient(
+      135deg,
+      rgb(139 92 246 / 0.24),
+      rgb(34 211 238 / 0.12),
+      rgb(59 130 246 / 0.18)
+    ),
+    rgb(15 23 42 / 0.78);
+  box-shadow:
+    0 0 24px rgb(34 211 238 / 0.1),
+    $shadow-sm;
+}
+
+.showcaseCard {
+  border-color: rgb(34 211 238 / 0.28);
+}
+
+.monumentCard {
+  border-color: rgb(250 204 21 / 0.34);
+  box-shadow:
+    0 0 18px rgb(250 204 21 / 0.1),
+    $shadow-sm;
+}
+
+.playerRankBadge {
+  align-self: center;
+}
+
+.playerAvatar {
+  position: relative;
+  display: block;
+  width: 3rem;
+  height: 3rem;
+  align-self: center;
+  overflow: visible;
+  background:
+    linear-gradient(145deg, rgb(34 211 238 / 0.24), rgb(139 92 246 / 0.12)),
+    rgb(7 11 20 / 0.86);
+  border: 1px solid rgb(34 211 238 / 0.42);
+  border-radius: $radius-lg;
+  box-shadow: $shadow-glow-cyan;
+  isolation: isolate;
+
+  img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  &::before {
+    inset: -3px;
+    z-index: 0;
+  }
+
+  &::after {
+    inset: 0;
+    z-index: 0;
+    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.08);
+  }
+}
+
+.paragonPlate {
+  border-color: rgb(244 208 255 / 0.82);
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 0.14),
+    0 0 0 3px rgb(168 85 247 / 0.12),
+    0 0 22px rgb(216 180 254 / 0.2),
+    0 0 36px rgb(168 85 247 / 0.12);
+
+  &::before,
+  &::after {
+    opacity: 1;
+  }
+
+  &::before {
+    inset: -11px;
+    background:
+      url('/assets/plates/ssRankPlate.png') center / contain no-repeat,
+      radial-gradient(
+        circle at 50% 50%,
+        rgb(216 180 254 / 0.18),
+        transparent 62%
+      );
+    filter: drop-shadow(0 0 10px rgb(216 180 254 / 0.2));
+  }
+
+  &::after {
+    background:
+      linear-gradient(
+        145deg,
+        rgb(255 255 255 / 0.16),
+        transparent 32%,
+        transparent 68%,
+        rgb(216 180 254 / 0.14)
+      ),
+      radial-gradient(
+        circle at 72% 78%,
+        rgb(168 85 247 / 0.24),
+        transparent 28%
+      );
+  }
+}
+
+.paragonAura {
+  border-color: rgb(244 208 255 / 0.76);
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 0.1),
+    0 0 0 3px rgb(168 85 247 / 0.14),
+    0 0 22px rgb(168 85 247 / 0.28),
+    0 0 34px rgb(216 180 254 / 0.18),
+    $shadow-glow-cyan;
+
+  &::before,
+  &::after {
+    opacity: 1;
+  }
+
+  &::before {
+    background:
+      radial-gradient(
+        circle at 28% 22%,
+        rgb(255 255 255 / 0.3),
+        transparent 24%
+      ),
+      conic-gradient(
+        from 210deg,
+        rgb(255 255 255 / 0.08),
+        rgb(216 180 254 / 0.48),
+        rgb(168 85 247 / 0.2),
+        rgb(255 255 255 / 0.08)
+      );
+  }
+
+  &::after {
+    background:
+      linear-gradient(
+        145deg,
+        rgb(255 255 255 / 0.18),
+        transparent 32%,
+        transparent 68%,
+        rgb(216 180 254 / 0.16)
+      ),
+      radial-gradient(
+        circle at 72% 78%,
+        rgb(168 85 247 / 0.24),
+        transparent 28%
+      );
+  }
+}
+
+.iteratedAura {
+  border-color: rgb(250 204 21 / 0.72);
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 0.12),
+    0 0 0 3px rgb(34 211 238 / 0.14),
+    0 0 24px rgb(34 211 238 / 0.28),
+    0 0 38px rgb(244 114 182 / 0.2),
+    0 0 48px rgb(250 204 21 / 0.12);
+
+  &::before,
+  &::after {
+    opacity: 1;
+  }
+
+  &::before {
+    background:
+      radial-gradient(
+        circle at 22% 20%,
+        rgb(255 255 255 / 0.34),
+        transparent 22%
+      ),
+      conic-gradient(
+        from 180deg,
+        rgb(34 211 238 / 0.42),
+        rgb(244 114 182 / 0.26),
+        rgb(250 204 21 / 0.38),
+        rgb(34 211 238 / 0.42)
+      );
+    animation: premiumHaloSpin 10s linear infinite;
+  }
+
+  &::after {
+    background:
+      linear-gradient(
+        145deg,
+        rgb(255 255 255 / 0.18),
+        transparent 26%,
+        transparent 62%,
+        rgb(250 204 21 / 0.2)
+      ),
+      radial-gradient(
+        circle at 70% 76%,
+        rgb(244 114 182 / 0.26),
+        transparent 28%
+      );
+  }
+}
+
+.cosmicFrame {
+  border-color: rgb(250 204 21 / 0.72);
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 0.08),
+    0 0 0 3px rgb(250 204 21 / 0.14),
+    0 0 22px rgb(250 204 21 / 0.16),
+    inset 0 0 16px rgb(250 204 21 / 0.08);
+}
+
+.livingPlate {
+  border-color: rgb(255 255 255 / 0.88);
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 0.18),
+    0 0 0 4px rgb(34 211 238 / 0.18),
+    0 0 28px rgb(34 211 238 / 0.34),
+    0 0 48px rgb(244 114 182 / 0.26),
+    0 0 64px rgb(250 204 21 / 0.16);
+
+  &::before,
+  &::after {
+    opacity: 1;
+  }
+
+  &::before {
+    inset: -13px;
+    background:
+      url('/assets/plates/sssRankPlate.png') center / contain no-repeat,
+      radial-gradient(
+        circle at 50% 50%,
+        rgb(103 232 249 / 0.24),
+        transparent 64%
+      );
+    filter: drop-shadow(0 0 10px rgb(34 211 238 / 0.36))
+      drop-shadow(0 0 18px rgb(244 114 182 / 0.2));
+  }
+
+  &::after {
+    background:
+      linear-gradient(
+        145deg,
+        rgb(255 255 255 / 0.24),
+        transparent 28%,
+        transparent 62%,
+        rgb(250 204 21 / 0.22)
+      ),
+      radial-gradient(
+        circle at 72% 76%,
+        rgb(244 114 182 / 0.3),
+        transparent 30%
+      );
+  }
+}
+
+.playerMeta {
+  min-width: 0;
+
+  strong,
+  span {
+    display: block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: fit-content;
+  }
+
+  strong {
+    color: $color-ink;
+    font-size: $font-size-sm;
+  }
+
+  span {
+    --player-rank-primary: 196 181 253;
+    --player-rank-secondary: 139 92 246;
+
+    background: transparent;
+    box-shadow: none;
+    color: rgb(var(--player-rank-primary));
+    font-size: $font-size-xs;
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    line-height: 1.2;
+    text-shadow:
+      0 0 10px rgb(var(--player-rank-primary) / 0.1),
+      0 0 24px rgb(var(--player-rank-secondary) / 0.1);
+
+    &[data-rank='E'] {
+      --player-rank-primary: 203 213 225;
+      --player-rank-secondary: 148 163 184;
+    }
+
+    &[data-rank='D'] {
+      --player-rank-primary: 134 239 172;
+      --player-rank-secondary: 34 197 94;
+    }
+
+    &[data-rank='C'] {
+      --player-rank-primary: 165 243 252;
+      --player-rank-secondary: 34 211 238;
+    }
+
+    &[data-rank='B'] {
+      --player-rank-primary: 216 180 254;
+      --player-rank-secondary: 168 85 247;
+    }
+
+    &[data-rank='A'] {
+      --player-rank-primary: 147 197 253;
+      --player-rank-secondary: 59 130 246;
+    }
+
+    &[data-rank='S'] {
+      --player-rank-primary: 253 224 71;
+      --player-rank-secondary: 251 191 36;
+    }
+
+    &[data-rank='SS'] {
+      --player-rank-primary: 251 113 133;
+      --player-rank-secondary: 168 85 247;
+    }
+
+    &[data-rank='SSS'] {
+      --player-rank-primary: 244 114 182;
+      --player-rank-secondary: 34 211 238;
+    }
+  }
+}
+
+.paragonNameplate {
+  color: transparent !important;
+  background: linear-gradient(
+    100deg,
+    rgb(244 114 182),
+    rgb(168 85 247) 18%,
+    rgb(96 165 250) 36%,
+    rgb(250 204 252) 48%,
+    rgb(244 114 182) 60%,
+    rgb(99 102 241) 78%,
+    rgb(168 85 247)
+  );
+  background-size: 320% 100%;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.03em;
+  text-shadow:
+    0 0 10px rgb(255 240 252 / 0.26),
+    0 0 20px rgb(244 114 182 / 0.2),
+    0 0 34px rgb(168 85 247 / 0.16);
+  animation:
+    paragonNameGlow 3.6s ease-in-out infinite,
+    premiumTextShift 4.2s linear infinite;
+}
+
+.livingNameplate {
+  color: transparent !important;
+  background: linear-gradient(
+    100deg,
+    rgb(34 211 238),
+    rgb(244 114 182) 18%,
+    rgb(250 204 21) 36%,
+    rgb(103 232 249) 52%,
+    rgb(168 85 247) 68%,
+    rgb(244 114 182) 84%,
+    rgb(34 211 238)
+  );
+  background-size: 360% 100%;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.035em;
+  text-shadow:
+    0 0 17px rgb(255 255 255 / 0.4),
+    0 0 32px rgb(34 211 238 / 0.34),
+    0 0 50px rgb(244 114 182 / 0.28),
+    0 0 65px rgb(250 204 21 / 0.21);
+  animation: premiumTextShift 3.7s linear infinite;
+}
+
+.relicMark {
+  position: absolute;
+  top: $space-3;
+  right: $space-3;
+  width: 0.65rem;
+  height: 0.65rem;
+  background: $color-accent;
+  border-radius: 999px;
+  box-shadow:
+    0 0 0 3px rgb(251 191 36 / 0.12),
+    0 0 14px rgb(251 191 36 / 0.42);
+}
+
+.playerProgress {
+  grid-column: 1 / -1;
+  height: 0.45rem;
+  overflow: hidden;
+  background: rgb(0 0 0 / 0.34);
+  border-radius: 999px;
+
+  span {
+    display: block;
+    height: 100%;
+    background: linear-gradient(
+      270deg,
+      $color-primary,
+      $color-info,
+      $color-primary,
+      $color-info
+    );
+    background-size: 800% 800%;
+    box-shadow: $shadow-glow-cyan;
+    animation: sideProgressBarAnimate 4s ease infinite;
+  }
+}
+
+@keyframes sideProgressBarAnimate {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.nextRank {
+  grid-column: 1 / -1;
+  color: $color-muted;
+  font-size: $font-size-xs;
+}
+
+@keyframes premiumTextShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes paragonNameGlow {
+  0%,
+  100% {
+    text-shadow:
+      0 0 10px rgb(255 240 252 / 0.26),
+      0 0 20px rgb(244 114 182 / 0.2),
+      0 0 34px rgb(168 85 247 / 0.16);
+  }
+
+  50% {
+    text-shadow:
+      0 0 16px rgb(255 240 252 / 0.38),
+      0 0 30px rgb(244 114 182 / 0.3),
+      0 0 50px rgb(168 85 247 / 0.24);
+  }
+}
+
+@keyframes paragonCardGlow {
+  0%,
+  100% {
+    box-shadow:
+      inset 0 0 0 1px rgb(255 255 255 / 0.04),
+      inset 0 0 32px rgb(216 180 254 / 0.1),
+      0 0 28px rgb(244 114 182 / 0.18),
+      0 0 56px rgb(168 85 247 / 0.18),
+      $shadow-sm;
+    border-color: rgb(244 114 182 / 0.34);
+  }
+
+  50% {
+    box-shadow:
+      inset 0 0 0 1px rgb(255 255 255 / 0.06),
+      inset 0 0 42px rgb(216 180 254 / 0.14),
+      0 0 36px rgb(244 114 182 / 0.26),
+      0 0 74px rgb(168 85 247 / 0.28),
+      $shadow-sm;
+    border-color: rgb(244 114 182 / 0.46);
+  }
+}
+
+@keyframes livingCardGlow {
+  0%,
+  100% {
+    box-shadow:
+      inset 0 0 0 1px rgb(255 255 255 / 0.08),
+      inset 0 0 40px rgb(34 211 238 / 0.12),
+      0 0 34px rgb(34 211 238 / 0.24),
+      0 0 68px rgb(244 114 182 / 0.22),
+      0 0 90px rgb(250 204 21 / 0.12),
+      $shadow-sm;
+  }
+
+  50% {
+    box-shadow:
+      inset 0 0 0 1px rgb(255 255 255 / 0.12),
+      inset 0 0 52px rgb(34 211 238 / 0.18),
+      0 0 44px rgb(34 211 238 / 0.34),
+      0 0 84px rgb(244 114 182 / 0.3),
+      0 0 108px rgb(250 204 21 / 0.18),
+      $shadow-sm;
+  }
+}
+
+@keyframes premiumHaloSpin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .overlay {
   position: fixed;
   inset: 0;
   z-index: $z-header;
   padding: 0;
-  background: rgb(23 32 27 / 0.28);
+  background: rgb(0 0 0 / 0.56);
   border: 0;
 
   @include media(lg) {
     display: none;
   }
 }
-

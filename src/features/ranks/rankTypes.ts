@@ -1,4 +1,5 @@
 export interface RankDefinition {
+  classTitle: string;
   maxXp: number | null;
   minXp: number;
   name: string;
@@ -11,4 +12,3 @@ export interface RankProgress {
   progressMax: number;
   progressValue: number;
 }
-

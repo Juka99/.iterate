@@ -1,0 +1,57 @@
+@use '../../../styles/abstracts/variables' as *;
+
+.toast {
+  min-width: min(24rem, calc(100vw - 2rem));
+  background:
+    linear-gradient(135deg, rgb(139 92 246 / 0.18), rgb(34 211 238 / 0.08)),
+    rgb(7 11 20 / 0.96) !important;
+  border: 1px solid rgb(139 92 246 / 0.34) !important;
+  border-radius: $radius-md !important;
+  color: $color-ink !important;
+  box-shadow:
+    0 18px 50px rgb(0 0 0 / 0.46),
+    0 0 26px rgb(139 92 246 / 0.16),
+    inset 0 0 22px rgb(139 92 246 / 0.06) !important;
+  backdrop-filter: blur(18px);
+
+  &[data-type='success'] {
+    border-color: rgb(34 211 238 / 0.5) !important;
+    box-shadow:
+      0 18px 50px rgb(0 0 0 / 0.46),
+      0 0 28px rgb(34 211 238 / 0.2),
+      inset 0 0 22px rgb(34 211 238 / 0.08) !important;
+  }
+
+  &[data-type='error'] {
+    border-color: rgb(251 113 133 / 0.5) !important;
+    box-shadow:
+      0 18px 50px rgb(0 0 0 / 0.46),
+      0 0 28px rgb(251 113 133 / 0.2),
+      inset 0 0 22px rgb(251 113 133 / 0.08) !important;
+  }
+
+  &[data-type='warning'] {
+    border-color: rgb(250 204 21 / 0.48) !important;
+    box-shadow:
+      0 18px 50px rgb(0 0 0 / 0.46),
+      0 0 28px rgb(250 204 21 / 0.18),
+      inset 0 0 22px rgb(250 204 21 / 0.07) !important;
+  }
+
+  :global([data-title]) {
+    color: $color-ink !important;
+    font-weight: 900 !important;
+  }
+
+  :global([data-description]) {
+    color: $color-muted !important;
+    font-weight: 700 !important;
+    line-height: 1.5 !important;
+  }
+
+  :global([data-close-button]) {
+    background: rgb(15 23 42 / 0.96) !important;
+    border-color: rgb(139 92 246 / 0.42) !important;
+    color: $color-ink !important;
+  }
+}

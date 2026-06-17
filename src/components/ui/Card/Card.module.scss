@@ -4,6 +4,10 @@
 .card {
   @include card-style;
   padding: $space-5;
+
+  > * {
+    position: relative;
+  }
 }
 
 .header {
@@ -14,19 +18,21 @@
   margin-bottom: $space-4;
 
   h2 {
+    color: $color-ink;
     font-size: $font-size-xl;
+    letter-spacing: 0;
   }
 }
 
 .eyebrow {
   margin-bottom: $space-1;
-  color: $color-muted;
+  color: $color-primary-strong;
   font-size: $font-size-xs;
   font-weight: 800;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
 .actions {
   flex: 0 0 auto;
 }
-

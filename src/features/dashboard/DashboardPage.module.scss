@@ -7,28 +7,203 @@
 }
 
 .hero {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  min-height: 9rem;
+  position: relative;
+  display: grid;
+  gap: $space-6;
+  min-height: 14.5rem;
   padding: $space-6;
   background:
-    linear-gradient(135deg, rgb(18 106 79 / 0.92), rgb(194 122 40 / 0.82)),
-    $color-primary;
+    linear-gradient(90deg, rgb(7 11 20 / 0.96) 0%, rgb(7 11 20 / 0.78) 42%, rgb(7 11 20 / 0.42) 68%, rgb(7 11 20 / 0.78) 100%),
+    linear-gradient(180deg, rgb(139 92 246 / 0.2), transparent),
+    url("/assets/hunter-hero.png");
+  background-position: center;
+  background-size: cover;
+  border: 1px solid rgb(139 92 246 / 0.38);
   border-radius: $radius-lg;
-  color: #ffffff;
+  box-shadow: $shadow-md;
+  color: $color-ink;
+  overflow: hidden;
+
+  &::before {
+    position: absolute;
+    inset: auto 0 0;
+    height: 0.25rem;
+    content: "";
+    background: linear-gradient(90deg, $color-primary, $color-info);
+    box-shadow: $shadow-glow-cyan;
+  }
+
+  @include media(md) {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+  }
+}
+
+.heroCopy {
+  position: relative;
+  z-index: 1;
 
   p {
-    margin-bottom: $space-2;
-    font-size: $font-size-sm;
+    margin-bottom: $space-3;
+    color: $color-primary-strong;
+    font-size: $font-size-xs;
     font-weight: 900;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
   }
 
   h1 {
-    max-width: 48rem;
+    max-width: 32rem;
+    margin-bottom: $space-4;
     font-size: $font-size-2xl;
+    letter-spacing: 0;
+
+    @include media(md) {
+      font-size: 2.65rem;
+    }
   }
+
+  h1 span {
+    display: block;
+    color: $color-info;
+    text-shadow: $shadow-glow-cyan;
+  }
+
+  small {
+    display: block;
+    margin-top: $space-2;
+    color: $color-muted;
+    font-size: $font-size-xs;
+  }
+}
+
+.heroProgress {
+  width: min(100%, 23rem);
+  height: 0.5rem;
+  overflow: hidden;
+  background: rgb(0 0 0 / 0.48);
+  border-radius: 999px;
+
+  span {
+    display: block;
+    height: 100%;
+    background: linear-gradient(270deg, $color-primary, $color-info, $color-primary, $color-info);
+    background-size: 800% 800%;
+    border-radius: inherit;
+    box-shadow: $shadow-glow-cyan;
+    animation: heroProgressBarAnimate 4s ease infinite;
+  }
+}
+
+@keyframes heroProgressBarAnimate {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+  
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.heroStats {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: $space-3;
+  width: min(100%, 31rem);
+  margin: 0;
+
+  div {
+    display: grid;
+    min-height: 7.2rem;
+    align-content: center;
+    justify-items: center;
+    padding: $space-4 $space-3;
+    text-align: center;
+    background:
+      linear-gradient(145deg, rgb(139 92 246 / 0.2), rgb(34 211 238 / 0.08)),
+      rgb(15 23 42 / 0.78);
+    border: 1px solid rgb(139 92 246 / 0.28);
+    border-radius: $radius-md;
+    box-shadow:
+      0 18px 42px rgb(0 0 0 / 0.34),
+      inset 0 0 20px rgb(139 92 246 / 0.1);
+
+    &:nth-child(2) {
+      background:
+        linear-gradient(145deg, rgb(34 211 238 / 0.2), rgb(251 191 36 / 0.08)),
+        rgb(15 23 42 / 0.78);
+      border-color: rgb(34 211 238 / 0.28);
+    }
+
+    &:nth-child(3) {
+      background:
+        linear-gradient(145deg, rgb(251 191 36 / 0.18), rgb(251 113 133 / 0.08)),
+        rgb(15 23 42 / 0.78);
+      border-color: rgb(251 191 36 / 0.28);
+    }
+  }
+
+  dt {
+    color: $color-primary-strong;
+    font-size: $font-size-xs;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-shadow: $shadow-glow-purple;
+    text-transform: uppercase;
+  }
+
+  div:nth-child(2) dt {
+    color: $color-info-strong;
+    text-shadow: $shadow-glow-cyan;
+  }
+
+  div:nth-child(3) dt {
+    color: $color-accent;
+    text-shadow: $shadow-glow-gold;
+  }
+
+  div:nth-child(3) dd {
+    color: $color-accent;
+    text-shadow: $shadow-glow-gold;
+  }
+
+  dd {
+    margin: $space-2 0 0;
+    color: $color-info;
+    font-size: 1.8rem;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  small {
+    margin-top: $space-1;
+    color: $color-muted;
+    font-size: $font-size-xs;
+    font-weight: 800;
+  }
+
+  @include media-down(sm) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    div:nth-child(2) {
+      grid-column: 1 / -1;
+      grid-row: 2;
+    }
+
+    div:nth-child(3) {
+      grid-column: 2;
+      grid-row: 1;
+    }
+  }
+}
+
+.rankBadge {
+  margin-top: $space-2 !important;
 }
 
 .grid,
@@ -39,13 +214,13 @@
 
 .grid {
   @include media(md) {
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1.35fr 0.65fr;
   }
 }
 
 .columns {
   @include media(lg) {
-    grid-template-columns: minmax(0, 1.45fr) minmax(18rem, 0.55fr);
+    grid-template-columns: minmax(0, 1.35fr) minmax(20rem, 0.65fr);
     align-items: start;
   }
 }
@@ -54,4 +229,3 @@
   color: $color-danger;
   font-weight: 700;
 }
-

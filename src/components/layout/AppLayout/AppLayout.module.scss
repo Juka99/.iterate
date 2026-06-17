@@ -4,6 +4,7 @@
 
 .shell {
   min-height: 100vh;
+  color: $color-ink;
 
   @include media(lg) {
     display: grid;
@@ -20,3 +21,19 @@
   @include section-spacing;
 }
 
+.routeViewport {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+}
+
+.routeScene {
+  position: relative;
+  will-change: opacity, transform, filter;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .routeScene {
+    will-change: auto;
+  }
+}

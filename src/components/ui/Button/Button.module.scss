@@ -8,9 +8,11 @@
   justify-content: center;
   gap: $space-2;
   padding: 0 $space-4;
-  border: 1px solid transparent;
+  border: 1px solid rgb(139 92 246 / 0.26);
   border-radius: $radius-md;
-  font-weight: 700;
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 0.2), 0 12px 26px rgb(0 0 0 / 0.26);
+  color: $color-ink;
+  font-weight: 800;
   transition:
     background 160ms ease,
     border-color 160ms ease,
@@ -38,20 +40,25 @@
 }
 
 .primary {
-  background: $color-primary;
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.18), transparent),
+    $color-primary;
   color: #ffffff;
+  box-shadow: $shadow-glow-purple;
 
   &:hover:not(:disabled) {
-    background: $color-primary-strong;
+    background:
+      linear-gradient(180deg, rgb(255 255 255 / 0.22), transparent),
+      $color-primary-strong;
   }
 }
 
 .secondary {
-  background: $color-primary-soft;
+  background: rgb(139 92 246 / 0.12);
   color: $color-primary-strong;
 
   &:hover:not(:disabled) {
-    border-color: rgb(18 106 79 / 0.22);
+    border-color: rgb(139 92 246 / 0.58);
   }
 }
 
@@ -60,17 +67,16 @@
   color: $color-muted;
 
   &:hover:not(:disabled) {
-    background: rgb(23 32 27 / 0.06);
-    color: $color-ink;
+    background: rgb(255 255 255 / 0.06);
+    color: $color-info-strong;
   }
 }
 
 .danger {
-  background: rgb(179 58 58 / 0.1);
+  background: rgb(255 111 111 / 0.12);
   color: $color-danger;
 
   &:hover:not(:disabled) {
-    border-color: rgb(179 58 58 / 0.22);
+    border-color: rgb(255 111 111 / 0.35);
   }
 }
-

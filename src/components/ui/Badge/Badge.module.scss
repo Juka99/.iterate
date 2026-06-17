@@ -5,28 +5,35 @@
   min-height: 1.625rem;
   align-items: center;
   padding: 0 $space-3;
-  border-radius: 999px;
+  border: 1px solid currentColor;
+  border-radius: $radius-sm;
   font-size: $font-size-xs;
   font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .neutral {
-  background: rgb(23 32 27 / 0.08);
+  background: rgb(255 255 255 / 0.06);
   color: $color-muted;
 }
 
 .success {
-  background: $color-primary-soft;
-  color: $color-primary-strong;
+  background: rgb(34 197 94 / 0.14);
+  color: #86efac;
 }
 
 .warning {
-  background: $color-accent-soft;
-  color: #8b541b;
+  background: rgb(251 191 36 / 0.14);
+  color: $color-accent;
 }
 
 .info {
-  background: rgb(40 103 168 / 0.12);
-  color: $color-info;
+  background: rgb(139 92 246 / 0.16);
+  color: $color-primary-strong;
 }
 
+.danger {
+  background: rgb(251 113 133 / 0.14);
+  color: #fb7185;
+}

@@ -1,0 +1,87 @@
+@use "../../../styles/abstracts/variables" as *;
+
+.loader {
+  display: grid;
+  gap: $space-3;
+  place-items: center;
+  padding: $space-5;
+  color: $color-info-strong;
+}
+
+.orbit {
+  position: relative;
+  display: grid;
+  width: var(--loader-size);
+  height: var(--loader-size);
+  place-items: center;
+  border: 1px solid rgb(34 211 238 / 0.28);
+  border-radius: 50%;
+  box-shadow:
+    0 0 22px rgb(34 211 238 / 0.18),
+    inset 0 0 18px rgb(139 92 246 / 0.16);
+  animation: loaderSpin 1.2s linear infinite;
+
+  &::before {
+    position: absolute;
+    inset: 22%;
+    content: "";
+    background: radial-gradient(circle, rgb(34 211 238 / 0.9), rgb(139 92 246 / 0.2) 58%, transparent 68%);
+    border-radius: 50%;
+    filter: blur(0.5px);
+  }
+
+  i {
+    position: absolute;
+    width: 0.36rem;
+    height: 0.36rem;
+    background: $color-accent;
+    border-radius: 50%;
+    box-shadow: $shadow-glow-gold;
+
+    &:nth-child(1) {
+      top: -0.18rem;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    &:nth-child(2) {
+      right: 8%;
+      bottom: 12%;
+    }
+
+    &:nth-child(3) {
+      bottom: 12%;
+      left: 8%;
+    }
+  }
+}
+
+.label {
+  color: $color-muted;
+  font-size: $font-size-xs;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.sm {
+  --loader-size: 2.2rem;
+
+  padding: $space-3;
+}
+
+.md {
+  --loader-size: 3rem;
+}
+
+.lg {
+  --loader-size: 4rem;
+
+  min-height: 16rem;
+}
+
+@keyframes loaderSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}

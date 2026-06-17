@@ -1,0 +1,19 @@
+@use "../../../styles/abstracts/variables" as *;
+
+.content {
+  display: grid;
+  gap: $space-5;
+
+  p {
+    color: rgb(226 232 240 / 0.86);
+    font-weight: 700;
+    line-height: 1.6;
+  }
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: $space-3;
+}

@@ -1,0 +1,79 @@
+@use "../../styles/abstracts/variables" as *;
+
+.badge {
+  --rank-primary: 139 92 246;
+  --rank-secondary: 34 211 238;
+  --rank-size: 3.5rem;
+
+  position: relative;
+  isolation: isolate;
+  display: inline-grid;
+  width: var(--rank-size);
+  height: var(--rank-size);
+  flex: 0 0 auto;
+  place-items: center;
+  color: rgb(var(--rank-primary));
+  line-height: 1;
+
+  &::before {
+    position: absolute;
+    inset: 8%;
+    z-index: -1;
+    content: "";
+    background:
+      radial-gradient(circle, rgb(var(--rank-primary) / 0.42), transparent 62%),
+      radial-gradient(circle, rgb(var(--rank-secondary) / 0.2), transparent 72%);
+    border-radius: 50%;
+    filter: blur(8px);
+    opacity: 0.9;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter:
+      drop-shadow(0 0 12px rgb(var(--rank-primary) / 0.34))
+      drop-shadow(0 10px 18px rgb(0 0 0 / 0.42));
+  }
+
+  strong {
+    position: absolute;
+    inset: auto auto 0.08rem 50%;
+    padding: 0.16rem 0.38rem;
+    background:
+      linear-gradient(145deg, rgb(var(--rank-primary) / 0.34), rgb(var(--rank-secondary) / 0.16)),
+      rgb(5 8 20 / 0.92);
+    border: 1px solid rgb(var(--rank-primary) / 0.48);
+    border-radius: 999px;
+    box-shadow: 0 0 14px rgb(var(--rank-primary) / 0.3);
+    color: $color-ink;
+    font-size: $font-size-xs;
+    font-weight: 950;
+    letter-spacing: 0;
+    text-shadow: 0 0 10px rgb(var(--rank-primary) / 0.5);
+    transform: translateX(-50%);
+    white-space: nowrap;
+  }
+}
+
+.sm {
+  --rank-size: 2.8rem;
+
+  strong {
+    bottom: -0.02rem;
+    padding: 0.12rem 0.3rem;
+    font-size: 0.66rem;
+  }
+}
+
+.lg {
+  --rank-size: 6.75rem;
+
+  strong {
+    bottom: 0.16rem;
+    padding: 0.22rem 0.56rem;
+    font-size: $font-size-lg;
+  }
+}

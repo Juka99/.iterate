@@ -1,6 +1,7 @@
-@use "sass:map";
+@use 'sass:map';
 
 $breakpoints: (
+  xsm: 25rem,
   sm: 36rem,
   md: 48rem,
   lg: 64rem,
@@ -12,6 +13,18 @@ $breakpoints: (
 
   @if $breakpoint {
     @media (min-width: $breakpoint) {
+      @content;
+    }
+  } @else {
+    @error "Unknown breakpoint: #{$key}";
+  }
+}
+
+@mixin media-down($key) {
+  $breakpoint: map.get($breakpoints, $key);
+
+  @if $breakpoint {
+    @media (max-width: calc(#{$breakpoint} - 0.001rem)) {
       @content;
     }
   } @else {
