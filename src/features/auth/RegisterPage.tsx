@@ -1,6 +1,6 @@
 import { FormEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { UserPlus } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Sparkles, Target, UserPlus } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { registerWithEmail } from './authService';
 import styles from './AuthPage.module.scss';
@@ -29,28 +29,46 @@ export function RegisterPage() {
 
   return (
     <main className={styles.page}>
-      <section className={styles.panel}>
-        <p className={styles.kicker}>.Iterate</p>
-        <h1>Create your account</h1>
-        <form className={styles.form} onSubmit={handleSubmit}>
-          <label>
-            Email
-            <input autoComplete="email" onChange={(event) => setEmail(event.target.value)} required type="email" value={email} />
-          </label>
-          <label>
-            Password
-            <input autoComplete="new-password" minLength={6} onChange={(event) => setPassword(event.target.value)} required type="password" value={password} />
-          </label>
-          {error && <p className={styles.error}>{error}</p>}
-          <Button disabled={isSubmitting} icon={<UserPlus />} type="submit">
-            {isSubmitting ? 'Creating account' : 'Create account'}
-          </Button>
-        </form>
-        <p className={styles.switch}>
-          Already registered? <Link to="/login">Sign in</Link>
-        </p>
+      <div aria-hidden="true" className={styles.ambientOrb} />
+      <section className={styles.authShell}>
+        <aside className={styles.brandPanel}>
+          <img alt="Iterate" className={styles.logo} src="/assets/iterate_logo.png" />
+          <div className={styles.brandCopy}>
+            <p className={styles.eyebrow}><Sparkles /> Begin your ascent</p>
+            <h2>Small steps.<br /><span>Legendary progress.</span></h2>
+            <p>Turn your daily goals into quests, build momentum, and become the person you keep promising yourself you’ll be.</p>
+          </div>
+          <div className={styles.perks}>
+            <span><Target /> Daily challenges</span>
+            <span><ShieldCheck /> Progress that lasts</span>
+          </div>
+        </aside>
+
+        <div className={styles.formPanel}>
+          <header className={styles.formHeader}>
+            <p className={styles.kicker}>Join the guild</p>
+            <h1>Create your hunter</h1>
+            <p>Your first quest starts right here.</p>
+          </header>
+          <form className={styles.form} onSubmit={handleSubmit}>
+            <label>
+              <span>Email address</span>
+              <input autoComplete="email" onChange={(event) => setEmail(event.target.value)} placeholder="you@example.com" required type="email" value={email} />
+            </label>
+            <label>
+              <span>Password</span>
+              <input autoComplete="new-password" minLength={6} onChange={(event) => setPassword(event.target.value)} placeholder="At least 6 characters" required type="password" value={password} />
+            </label>
+            {error && <p className={styles.error}>{error}</p>}
+            <Button disabled={isSubmitting} icon={<UserPlus />} type="submit">
+              {isSubmitting ? 'Creating account' : 'Start my journey'}
+            </Button>
+          </form>
+          <p className={styles.switch}>
+            Already a hunter? <Link to="/login">Sign in <ArrowRight /></Link>
+          </p>
+        </div>
       </section>
     </main>
   );
 }
-

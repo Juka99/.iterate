@@ -3,62 +3,267 @@
 @use "../../styles/abstracts/breakpoints" as *;
 
 .page {
-  @include flex-center;
+  position: relative;
+  display: grid;
   min-height: 100vh;
+  place-items: center;
   padding: $space-4;
+  isolation: isolate;
+  overflow: hidden;
+
+  &::before,
+  &::after {
+    content: '';
+    position: fixed;
+    z-index: -1;
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(4px);
+  }
+
+  &::before {
+    top: -12rem;
+    left: -10rem;
+    width: 34rem;
+    height: 34rem;
+    background: radial-gradient(circle, rgb(139 92 246 / 0.22), transparent 68%);
+  }
+
+  &::after {
+    right: -12rem;
+    bottom: -16rem;
+    width: 38rem;
+    height: 38rem;
+    background: radial-gradient(circle, rgb(34 211 238 / 0.14), transparent 68%);
+  }
 }
 
-.panel {
-  @include card-style;
-  width: min(100%, 28rem);
+.ambientOrb {
+  position: fixed;
+  z-index: -1;
+  width: 22rem;
+  height: 22rem;
+  background: rgb(139 92 246 / 0.08);
+  border-radius: 50%;
+  filter: blur(100px);
+}
+
+.authShell {
+  display: grid;
+  width: min(100%, 62rem);
+  overflow: hidden;
+  background: rgb(8 13 27 / 0.88);
+  border: 1px solid rgb(139 92 246 / 0.28);
+  border-radius: calc($radius-lg + $space-2);
+  box-shadow: 0 32px 100px rgb(0 0 0 / 0.55), 0 0 60px rgb(139 92 246 / 0.1);
+  backdrop-filter: blur(20px);
+
+  @include media(md) {
+    grid-template-columns: minmax(0, 1.04fr) minmax(22rem, 0.96fr);
+    min-height: 39rem;
+  }
+}
+
+.brandPanel {
+  position: relative;
+  display: flex;
+  min-height: 13rem;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: $space-6;
+  overflow: hidden;
+  background:
+    linear-gradient(145deg, rgb(139 92 246 / 0.34), rgb(15 23 42 / 0.35) 52%, rgb(34 211 238 / 0.12)),
+    #0c1021;
+  border-bottom: 1px solid rgb(139 92 246 / 0.22);
+
+  &::before {
+    content: '';
+    position: absolute;
+    right: -7rem;
+    bottom: -9rem;
+    width: 24rem;
+    height: 24rem;
+    background: repeating-radial-gradient(circle, transparent 0 1.65rem, rgb(196 181 253 / 0.08) 1.7rem 1.75rem);
+    border-radius: 50%;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 20%, rgb(255 255 255 / 0.04) 50%, transparent 70%);
+    pointer-events: none;
+  }
+
+  @include media(md) {
+    min-height: 100%;
+    padding: $space-8;
+    border-right: 1px solid rgb(139 92 246 / 0.2);
+    border-bottom: 0;
+  }
+}
+
+.logo {
+  position: relative;
+  z-index: 1;
+  width: 8rem;
+  height: auto;
+  filter: drop-shadow(0 0 18px rgb(139 92 246 / 0.28));
+}
+
+.brandCopy {
+  position: relative;
+  z-index: 1;
+  display: none;
+
+  @include media(md) {
+    display: block;
+  }
+
+  h2 {
+    margin-bottom: $space-4;
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    letter-spacing: -0.045em;
+
+    span {
+      color: $color-info-strong;
+      text-shadow: 0 0 28px rgb(34 211 238 / 0.25);
+    }
+  }
+
+  > p:last-child {
+    max-width: 27rem;
+    color: #aeb8ce;
+    line-height: 1.75;
+  }
+}
+
+.eyebrow,
+.kicker {
+  color: $color-primary-strong;
+  font-size: $font-size-xs;
+  font-weight: 900;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  margin-bottom: $space-4;
+
+  svg {
+    width: 1rem;
+  }
+}
+
+.perks {
+  position: relative;
+  z-index: 1;
+  display: none;
+  gap: $space-4;
+
+  @include media(md) {
+    display: flex;
+  }
+
+  span {
+    display: flex;
+    align-items: center;
+    gap: $space-2;
+    color: $color-muted;
+    font-size: $font-size-xs;
+    font-weight: 700;
+  }
+
+  svg {
+    width: 1rem;
+    color: $color-info;
+  }
+}
+
+.formPanel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   padding: $space-6;
 
   @include media(md) {
-    padding: $space-8;
-  }
-
-  h1 {
-    margin-bottom: $space-6;
-    font-size: $font-size-2xl;
+    padding: $space-10;
   }
 }
 
-.kicker {
-  margin-bottom: $space-2;
-  color: $color-primary;
-  font-weight: 900;
+.formHeader {
+  margin-bottom: $space-8;
+
+  h1 {
+    margin: $space-2 0 $space-2;
+    color: $color-ink;
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
+    letter-spacing: -0.035em;
+  }
+
+  > p:last-child {
+    color: $color-muted;
+    font-size: $font-size-sm;
+  }
 }
 
 .form {
   display: grid;
-  gap: $space-4;
+  gap: $space-5;
 
   label {
     display: grid;
     gap: $space-2;
-    color: $color-muted;
+  }
+
+  label > span {
+    color: #c8d0e0;
     font-size: $font-size-sm;
     font-weight: 800;
   }
 
   input {
-    min-height: 2.75rem;
-    padding: 0 $space-3;
-    background: $color-surface;
-    border: 1px solid $color-border;
-    border-radius: $radius-md;
+    width: 100%;
+    min-height: 3.15rem;
+    padding: 0 $space-4;
+    background: rgb(3 7 18 / 0.6);
+    border: 1px solid rgb(71 85 105 / 0.58);
+    border-radius: $radius-lg;
     color: $color-ink;
+    transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
+
+    &::placeholder {
+      color: #566079;
+    }
+
+    &:hover {
+      border-color: rgb(139 92 246 / 0.48);
+    }
 
     &:focus {
       @include focus-ring;
+      background: rgb(7 11 20 / 0.9);
       border-color: $color-primary;
+      outline: none;
+      box-shadow: 0 0 0 3px rgb(139 92 246 / 0.14), 0 0 24px rgb(139 92 246 / 0.1);
     }
+  }
+
+  button {
+    min-height: 3.15rem;
+    margin-top: $space-1;
+    border-radius: $radius-lg;
   }
 }
 
 .error {
   padding: $space-3;
-  background: rgb(179 58 58 / 0.1);
+  background: rgb(255 111 111 / 0.1);
+  border: 1px solid rgb(255 111 111 / 0.18);
   border-radius: $radius-md;
   color: $color-danger;
   font-size: $font-size-sm;
@@ -66,13 +271,47 @@
 }
 
 .switch {
-  margin-top: $space-5;
+  margin-top: $space-6;
   color: $color-muted;
   font-size: $font-size-sm;
+  text-align: center;
 
   a {
-    color: $color-primary;
+    display: inline-flex;
+    align-items: center;
+    gap: $space-1;
+    color: $color-info-strong;
     font-weight: 800;
+
+    &:hover {
+      color: #fff;
+    }
+
+    svg {
+      width: 0.95rem;
+      transition: transform 160ms ease;
+    }
+
+    &:hover svg {
+      transform: translateX(2px);
+    }
   }
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .authShell {
+    animation: authEnter 420ms ease-out both;
+  }
+}
+
+@keyframes authEnter {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.99);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
