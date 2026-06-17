@@ -1,15 +1,22 @@
 import { ChallengeCard } from './ChallengeCard';
-import type { Challenge } from '@/types/challenge';
+import type { ChallengeWithCompletion } from '@/types/challenge';
 import styles from './ChallengeList.module.scss';
 
 interface ChallengeListProps {
-  challenges: Challenge[];
+  challenges: ChallengeWithCompletion[];
   completingChallengeId?: string;
   emptyMessage?: string;
-  onComplete?: (challenge: Challenge) => void;
+  onComplete?: (challenge: ChallengeWithCompletion) => void;
+  onRevert?: (challenge: ChallengeWithCompletion) => void;
 }
 
-export function ChallengeList({ challenges, completingChallengeId, emptyMessage = 'No active challenges yet.', onComplete }: ChallengeListProps) {
+export function ChallengeList({
+  challenges,
+  completingChallengeId,
+  emptyMessage = 'No active challenges yet.',
+  onComplete,
+  onRevert,
+}: ChallengeListProps) {
   if (challenges.length === 0) {
     return <p className={styles.empty}>{emptyMessage}</p>;
   }
@@ -22,9 +29,9 @@ export function ChallengeList({ challenges, completingChallengeId, emptyMessage 
           isCompleting={completingChallengeId === challenge.id}
           key={challenge.id}
           onComplete={onComplete}
+          onRevert={onRevert}
         />
       ))}
     </div>
   );
 }
-

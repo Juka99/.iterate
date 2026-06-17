@@ -21,3 +21,12 @@ export async function updateProfile(userId: string, profile: ProfileUpdate): Pro
   return data;
 }
 
+export async function chooseHunterLegacyPath(targetPath: string): Promise<Profile> {
+  const { data, error } = await supabase.rpc('choose_hunter_legacy_path', { target_path: targetPath });
+
+  if (error) {
+    throw error;
+  }
+
+  return data;
+}

@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import { getDailyChallenges } from '../challengesService';
 
-export function useDailyChallenges(limit?: number) {
+export function useDailyChallenges(userId?: string) {
   return useQuery({
-    queryKey: ['daily-challenges', limit],
-    queryFn: () => getDailyChallenges(limit),
+    enabled: Boolean(userId),
+    queryKey: ['daily-challenges', userId],
+    queryFn: () => getDailyChallenges(userId as string),
   });
 }
-
